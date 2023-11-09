@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button, Container, Form, Table } from "react-bootstrap";
-
+import ReactApexChart from "react-apexcharts";
 
 
 
@@ -13,6 +13,20 @@ const Lagrange =()=>{
         {index: 4, X:60000, Y:9.6879},
         {index: 5, X:80000,Y:9.5682}
     ]
+    const chartOptions = {
+        chart: {
+          id: "lagrange-chart",
+        },
+        xaxis: {
+          categories: data.map((element) => element.X),
+        },
+      };
+    const series = [
+        {
+          name: "Y",
+          data: data.map((element) => element.Y),
+        },
+      ];
     const data2 =[];
 
     const print = () =>{
@@ -169,6 +183,9 @@ const Lagrange =()=>{
                         <Container>
                         {html}
                         </Container>
+                        <Container>
+        <ReactApexChart options={chartOptions} series={series} type="line" height={350} />
+      </Container>
 
                 </Container>
             </Container> 
